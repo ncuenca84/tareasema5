@@ -1,0 +1,28 @@
+<h2>Lista de Préstamos</h2>
+<table border="1">
+  <tr>
+    <th>ID</th>
+    <th>Cliente</th>
+    <th>Monto</th>
+    <th>Fecha</th>
+    <th>Acciones</th>
+  </tr>
+  <tr *ngFor="let p of prestamos">
+    <td>{{ p.id }}</td>
+    <td>{{ p.cliente }}</td>
+    <td>{{ p.monto }}</td>
+    <td>{{ p.fecha }}</td>
+    <td>
+      <button (click)="editar(p)">Editar</button>
+      <button (click)="eliminar(p.id)">Eliminar</button>
+    </td>
+  </tr>
+</table>
+
+<h3>{{ nuevo.id === 0 ? 'Agregar' : 'Actualizar' }} Préstamo</h3>
+<form (ngSubmit)="nuevo.id === 0 ? agregar() : actualizar()">
+  <input [(ngModel)]="nuevo.cliente" name="cliente" placeholder="Cliente" required>
+  <input [(ngModel)]="nuevo.monto" name="monto" type="number" placeholder="Monto" required>
+  <input [(ngModel)]="nuevo.fecha" name="fecha" type="date" required>
+  <button type="submit">{{ nuevo.id === 0 ? 'Agregar' : 'Actualizar' }}</button>
+</form>
